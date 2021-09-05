@@ -1,14 +1,21 @@
 import { Component, VERSION, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { CarCrashService } from './app.service';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private httpClient: HttpClient;
-  name = 'Angular ' + VERSION.major;
+  constructor(private crashService: CarCrashService) {}
+  crashes: any;
+  totalPages: any;
+  currentPage: number;
   ngOnInit() {
-    console.log(this.httpClient.get('http:8080/demo/users/namesWithAge'));
+    this.crashService.getCrashDetails(0).subscribe((data: any[]) => {
+      this.crashes = data;
+    });
+    this.crashService.getAllCrashes().subscribe((data: any[]) => {
+      this.totalPages = data;
+    });
   }
 }

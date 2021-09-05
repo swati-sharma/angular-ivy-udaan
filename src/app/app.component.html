@@ -1,4 +1,18 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div *ngFor="let crash of crashes; index as i;">
+  <a href="#">
+    <div class="card">
+      <div class="container">
+        <h4><b>Vehicle type 1</b></h4>
+        <p>{{crash.vehicle_type_code1}}</p>
+        <h4><b>Vehicle type 2</b></h4>
+        <p>{{crash.vehicle_type_code2}}</p>
+        <h4><b>Crash date</b></h4>
+        <p>{{crash.crash_date}}</p>
+        <h4><b>Crash time</b></h4>
+        <p>{{crash.crash_time}}</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+Total Pages: {{totalPages.length}}
